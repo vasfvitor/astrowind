@@ -1,3 +1,4 @@
+/** @type {import("eslint").Linter.Config} */
 module.exports = {
   env: {
     node: true,
@@ -5,12 +6,20 @@ module.exports = {
     browser: true,
   },
   extends: ['eslint:recommended', 'plugin:astro/recommended'],
+  parser: '@typescript-eslint/parser',
   parserOptions: {
+    tsconfigRootDir: __dirname,
     ecmaVersion: 'latest',
     sourceType: 'module',
   },
   rules: {},
   overrides: [
+    {
+      files: ['*.js'],
+      rules: {
+        'no-mixed-spaces-and-tabs': ['error', 'smart-tabs'],
+      },
+    },
     {
       files: ['*.astro'],
       parser: 'astro-eslint-parser',
@@ -18,7 +27,9 @@ module.exports = {
         parser: '@typescript-eslint/parser',
         extraFileExtensions: ['.astro'],
       },
-      rules: {},
+      rules: {
+        'no-mixed-spaces-and-tabs': ['error', 'smart-tabs'],
+      },
     },
     {
       files: ['*.ts'],

@@ -1,90 +1,70 @@
 ---
-import { Icon } from 'astro-icon';
+import Headline from '~/components/ui/Headline.astro';
+import ItemGrid from '~/components/ui/ItemGrid.astro';
+import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
+import Image from '~/components/common/Image.astro';
+import type { Features } from '~/types';
+
+const {
+  title = await Astro.slots.render('title'),
+  subtitle = await Astro.slots.render('subtitle'),
+  tagline = await Astro.slots.render('tagline'),
+  image,
+  items = [],
+  columns,
+  defaultIcon,
+  isBeforeContent,
+  isAfterContent,
+
+  id,
+  isDark = false,
+  classes = {},
+  bg = await Astro.slots.render('bg'),
+} = Astro.props as Features;
 ---
 
-<section>
-	<div class="max-w-6xl mx-auto px-4 sm:px-6 overflow-hidden">
-		<div class="py-12 md:py-20">
-			<div class="py-4 sm:py-6 lg:py-8">
-				<div class="flex flex-wrap md:-mx-8">
-					<div class="w-full lg:w-1/2 px-0 sm:px-8">
-						<div class="mb-12 lg:mb-0 pb-12 lg:pb-0 border-b lg:border-b-0">
-							<h2 class="mb-4 text-3xl lg:text-4xl font-bold font-heading">
-								Sed ac magna sit amet risus tristique interdum, at vel velit in hac habitasse platea dictumst.
-							</h2>
+<WidgetWrapper
+  id={id}
+  isDark={isDark}
+  containerClass={`${isBeforeContent ? 'md:pb-8 lg:pb-12' : ''} ${isAfterContent ? 'pt-0 md:pt-0 lg:pt-0' : ''} ${
+    classes?.container ?? ''
+  }`}
+  bg={bg}
+>
+  <Headline title={title} subtitle={subtitle} tagline={tagline} classes={classes?.headline} />
 
-							<p class="mb-8 text-xl text-gray-600 dark:text-slate-400">
-								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sagittis, quam nec venenatis lobortis, mi
-								risus tempus nulla, sed porttitor est nibh at nulla. Praesent placerat enim ut ex tincidunt vehicula.
-								Fusce sit amet dui tellus.
-							</p>
+  <div aria-hidden="true" class="aspect-w-16 aspect-h-7">
+    {
+      image && (
+        <div class="w-full h-80 object-cover rounded-xl mx-auto bg-gray-500 shadow-lg">
+          {typeof image === 'string' ? (
+            <Fragment set:html={image} />
+          ) : (
+            <Image
+              class="w-full h-80 object-cover rounded-xl mx-auto bg-gray-500 shadow-lg"
+              width="auto"
+              height={320}
+              widths={[400, 768]}
+              layout="fullWidth"
+              {...(image as any)}
+            />
+          )}
+        </div>
+      )
+    }
+  </div>
 
-							<div class="w-full">
-								<a
-									class="btn text-white bg-primary-600 hover:bg-primary-800 mb-4 sm:mb-0"
-									href="https://github.com/onwidget/astrowind"
-									target="_blank"
-									rel="noopener"
-								>
-									<Icon name="tabler:download" class="w-5 h-5 mr-1 -ml-1.5" /> Get template
-								</a>
-							</div>
-						</div>
-					</div>
-					<div class="w-full lg:w-1/2 px-0 sm:px-8">
-						<ul class="space-y-12">
-							<li class="flex md:-mx-4">
-								<div class="pr-4 sm:pl-4">
-									<span
-										class="flex w-16 h-16 mx-auto items-center justify-center text-2xl font-bold rounded-full bg-primary-50 text-primary-600"
-									>
-										1</span
-									>
-								</div>
-								<div class="px-4">
-									<h3 class="mb-4 text-xl font-semibold font-heading">Responsive Elements</h3>
-									<p class="text-gray-500 dark:text-gray-400">
-										Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sagittis, quam nec venenatis
-										lobortis, mi risus tempus nulla.
-									</p>
-								</div>
-							</li>
-							<li class="flex md:-mx-4">
-								<div class="pr-4 sm:pl-4">
-									<span
-										class="flex w-16 h-16 mx-auto items-center justify-center text-2xl font-bold rounded-full bg-primary-50 text-primary-600"
-									>
-										2</span
-									>
-								</div>
-								<div class="px-4">
-									<h3 class="mb-4 text-xl font-semibold font-heading">Flexible Team</h3>
-									<p class="text-gray-500 dark:text-gray-400">
-										Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sagittis, quam nec venenatis
-										lobortis, mi risus tempus nulla.
-									</p>
-								</div>
-							</li>
-							<li class="flex md:-mx-4">
-								<div class="pr-4 sm:pl-4">
-									<span
-										class="flex w-16 h-16 mx-auto items-center justify-center text-2xl font-bold rounded-full bg-primary-50 text-primary-600"
-									>
-										3</span
-									>
-								</div>
-								<div class="px-4">
-									<h3 class="mb-4 text-xl font-semibold font-heading">Ecologic Software</h3>
-									<p class="text-gray-500 dark:text-gray-400">
-										Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sagittis, quam nec venenatis
-										lobortis, mi risus tempus nulla.
-									</p>
-								</div>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
+  <ItemGrid
+    items={items}
+    columns={columns}
+    defaultIcon={defaultIcon}
+    classes={{
+      container: 'mt-12',
+      panel: 'max-w-full sm:max-w-md',
+      title: 'text-lg font-semibold',
+      description: 'mt-0.5',
+      icon: 'flex-shrink-0 mt-1 text-primary w-6 h-6',
+      ...((classes?.items as {}) ?? {}),
+    }}
+  />
+</WidgetWrapper>

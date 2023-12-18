@@ -1,28 +1,35 @@
 # 🚀 AstroWind
 
-<img src="lighthouse-score.png" align="right"
+<img src="https://raw.githubusercontent.com/onwidget/.github/main/resources/astrowind/lighthouse-score.png" align="right"
      alt="AstroWind Lighthouse Score" width="100" height="358">
 
-**AstroWind** is a free and open-source template to make your website using **Astro + Tailwind CSS**. Ready to start a new project and designed taking into account best practices.
+🌟 _Most *starred* & *forked* Astro theme in 2022_. 🌟
 
-## Features
+**AstroWind** is a free and open-source template to make your website using **[Astro 4.0](https://astro.build/) + [Tailwind CSS](https://tailwindcss.com/)**. Ready to start a new project and designed taking into account web best practices.
 
-- ✅ Integration with **Tailwind CSS** ([@astrojs/tailwind](https://docs.astro.build/en/guides/integrations-guide/tailwind/)).
-- ✅ Supports **Dark mode**.
-- ✅ **Fast and SEO friendly blog** with automatic **RSS feed** ([@astrojs/rss](https://docs.astro.build/en/guides/rss/)) and [**MDX** support](https://docs.astro.build/en/guides/integrations-guide/mdx/).
-- ✅ **Image optimization** ([@astrojs/images](https://docs.astro.build/en/guides/integrations-guide/image/)).
-- ✅ Generation of **project sitemap** based on your routes ([@astrojs/sitemap](https://docs.astro.build/en/guides/integrations-guide/sitemap/)).
-- ✅ **Open Graph tags** for social media sharing
-- ✅ **Fonts optimization** at build time ([subfont](https://www.npmjs.com/package/subfont)).
-- ✅ **Production-ready** scores in [Lighthouse](https://web.dev/measure/) and [PageSpeed Insights](https://pagespeed.web.dev/) reports
-
-<br>
-
-<img src="./screenshot.png" alt="AstroWind Theme Screenshot">
+- ✅ **Production-ready** scores in **PageSpeed Insights** reports.
+- ✅ Integration with **Tailwind CSS** supporting **Dark mode** and **_RTL_**.
+- ✅ **Fast and SEO friendly blog** with automatic **RSS feed**, **MDX** support, **Categories & Tags**, **Social Share**, ...
+- ✅ **Image Optimization** (using new **Astro Assets** and **Unpic** for Universal image CDN).
+- ✅ Generation of **project sitemap** based on your routes.
+- ✅ **Open Graph tags** for social media sharing.
+- ✅ **Analytics** built-in Google Analytics, and Splitbee integration.
 
 <br>
 
-<details>
+<img src="https://raw.githubusercontent.com/onwidget/.github/main/resources/astrowind/screenshot-astro3.png" alt="AstroWind Theme Screenshot">
+
+[![onWidget](https://custom-icon-badges.demolab.com/badge/made%20by%20-onWidget-556bf2?style=flat-square&logo=onwidget&logoColor=white&labelColor=101827)](https://onwidget.com)
+[![License](https://img.shields.io/github/license/onwidget/astrowind?style=flat-square&color=dddddd&labelColor=000000)](https://github.com/onwidget/astrowind/blob/main/LICENSE.md)
+[![Maintained](https://img.shields.io/badge/maintained%3F-yes-brightgreen.svg?style=flat-square)](https://github.com/onwidget)
+[![Contributions Welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat-square)](https://github.com/onwidget/astrowind#contributing)
+[![Known Vulnerabilities](https://snyk.io/test/github/onwidget/astrowind/badge.svg?style=flat-square)](https://snyk.io/test/github/onwidget/astrowind)
+[![Stars](https://img.shields.io/github/stars/onwidget/astrowind.svg?style=social&label=stars&maxAge=86400&color=ff69b4)](https://github.com/onwidget/astrowind)
+[![Forks](https://img.shields.io/github/forks/onwidget/astrowind.svg?style=social&label=forks&maxAge=86400&color=ff69b4)](https://github.com/onwidget/astrowind)
+
+<br>
+
+<details open>
 <summary>Table of Contents</summary>
 
 - [Demo](#demo)
@@ -31,8 +38,8 @@
   - [Commands](#commands)
   - [Configuration](#configuration)
   - [Deploy](#deploy)
-- [Roadmap](#roadmap)
 - [Frequently Asked Questions](#frequently-asked-questions)
+- [Related Projects](#related-projects)
 - [Contributing](#contributing)
 - [Acknowledgements](#acknowledgements)
 - [License](#license)
@@ -43,59 +50,66 @@
 
 ## Demo
 
-[🌀 astrowind.vercel.app](https://astrowind.vercel.app/) 
+📌 [https://astrowind.vercel.app/](https://astrowind.vercel.app/)
 
 <br>
 
-
 ## Getting started
+
+**AstroWind** tries to give you quick access to creating a website using [Astro 4.0](https://astro.build/) + [Tailwind CSS](https://tailwindcss.com/). It's a free theme which focuses on simplicity, good practices and high performance.
+
+Very little vanilla javascript is used only to provide basic functionality so that each developer decides which framework (React, Vue, Svelte, Solid JS...) to use and how to approach their goals..
 
 ### Project structure
 
-Inside AstroWind template, you'll see the following folders and files:
+Inside **AstroWind** template, you'll see the following folders and files:
 
 ```
 /
-├── data/
-|   └── blog/
-|       ├── post-slug-1.md
-|       ├── post-slug-2.mdx
-|       └── ...
 ├── public/
-│   ├── robots.txt
-│   └── favicon.ico
+│   ├── _headers
+│   └── robots.txt
 ├── src/
 │   ├── assets/
+│   │   ├── favicons/
 │   │   ├── images/
-|   |   └── styles/
-|   |       └── base.css
+│   │   └── styles/
+│   │       └── tailwind.css
 │   ├── components/
-│   │   ├── atoms/
 │   │   ├── blog/
-│   │   ├── core/
-|   |   └── widgets/
-|   |       ├── Header.astro
-|   |       ├── Footer.astro
-|   |       └── ...
+│   │   ├── common/
+│   │   ├── ui/
+│   │   ├── widgets/
+│   │   │   ├── Header.astro
+│   │   │   └── ...
+│   │   ├── CustomStyles.astro
+│   │   ├── Favicons.astro
+│   │   └── Logo.astro
+│   ├── content/
+│   │   ├── post/
+│   │   │   ├── post-slug-1.md
+│   │   │   ├── post-slug-2.mdx
+│   │   │   └── ...
+│   │   └-- config.ts
 │   ├── layouts/
-│   |   |── BaseLayout.astro
-│   |   └── ...
+│   │   ├── Layout.astro
+│   │   ├── MarkdownLayout.astro
+│   │   └── PageLayout.astro
 │   ├── pages/
-│   |   ├── [...blog]/
-|   |   |   ├── [...page].astro
-|   |   |   └── [slug].astro
-│   |   ├── [...categories]/
-|   |   |   └── [category]/
-|   |   |       └── [...page].astro
-│   |   ├── [...tags]/
-|   |   |   └── [tag]/
-|   |   |       └── [...page].astro
-│   |   ├── index.astro
-|   |   ├── 404.astro
-|   |   └-- rss.xml.js
+│   │   ├── [...blog]/
+│   │   │   ├── [category]/
+│   │   │   ├── [tag]/
+│   │   │   ├── [...page].astro
+│   │   │   └── index.astro
+│   │   ├── index.astro
+│   │   ├── 404.astro
+│   │   ├-- rss.xml.ts
+│   │   └── ...
 │   ├── utils/
-│   └── config.mjs
+│   ├── config.yaml
+│   └── navigation.js
 ├── package.json
+├── astro.config.mjs
 └── ...
 ```
 
@@ -105,9 +119,10 @@ There's nothing special about `src/components/`, but that's where we like to put
 
 Any static assets, like images, can be placed in the `public/` directory if they do not require any transformation or in the `assets/` directory if they are imported directly.
 
-[![Edit AstroWind on CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://githubbox.com/onwidget/astrowind/tree/main)
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+[![Edit AstroWind on CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://githubbox.com/onwidget/astrowind/tree/main)  [![Open in Gitpod](https://svgshare.com/i/xdi.svg)](https://gitpod.io/?on=gitpod#https://github.com/onwidget/astrowind)  [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/onwidget/astrowind)   
+
+> 🧑‍🚀 **Seasoned astronaut?** Delete this file `README.md`. Update `src/config.yaml` and contents. Have fun!
 
 <br>
 
@@ -115,59 +130,92 @@ Any static assets, like images, can be placed in the `public/` directory if they
 
 All commands are run from the root of the project, from a terminal:
 
-| Command           | Action                                       |
-| :---------------- | :------------------------------------------- |
-| `npm install`     | Installs dependencies                        |
-| `npm run dev`     | Starts local dev server at `localhost:3000`  |
-| `npm run build`   | Build your production site to `./dist/`      |
-| `npm run preview` | Preview your build locally, before deploying |
+| Command               | Action                                             |
+| :-------------------- | :------------------------------------------------- |
+| `npm install`         | Installs dependencies                              |
+| `npm run dev`         | Starts local dev server at `localhost:3000`        |
+| `npm run build`       | Build your production site to `./dist/`            |
+| `npm run preview`     | Preview your build locally, before deploying       |
+| `npm run format`      | Format codes with Prettier                         |
+| `npm run lint:eslint` | Run Eslint                                         |
+| `npm run astro ...`   | Run CLI commands like `astro add`, `astro preview` |
 
 <br>
 
 ### Configuration
 
-Basic configuration file: `./src/config.mjs`
+Basic configuration file: `./src/config.yaml`
 
-```javascript
-export const SITE = {
-  name: "Example",
+```yaml
+site:
+  name: 'Example'
+  site: 'https://example.com'
+  base: '/' # Change this if you need to deploy to Github Pages, for example
+  trailingSlash: false # Generate permalinks with or without "/" at the end
 
-  origin: "https://example.com",
-  basePathname: "/", // Change this if you need to deploy to Github Pages, for example
+  googleSiteVerificationId: false # Or some value,
 
-  title: "Example - This is the homepage title of Example",
-  description: "This is the homepage description of Example",
+# Default SEO metadata
+metadata:
+  title:
+    default: 'Example'
+    template: '%s — Example'
+  description: 'This is the default meta description of Example website'
+  robots:
+    index: true
+    follow: true
+  openGraph:
+    site_name: 'Example'
+    images:
+      - url: '~/assets/images/default.jpg'
+        width: 1200
+        height: 628
+    type: website
+  twitter:
+    handle: '@twitter_user'
+    site: '@twitter_user'
+    cardType: summary_large_image
 
-  googleAnalyticsId: false, // or "G-XXXXXXXXXX",
-  googleSiteVerificationId: false // or some value,
-};
+i18n:
+  language: en
+  textDirection: ltr
 
-export const BLOG = {
-  disabled: false,
-  postsPerPage: 4,
+apps:
+  blog:
+    isEnabled: true
+    postsPerPage: 6
 
-  blog: {
-    disabled: false,
-    pathname: 'blog', // blog main path, you can change this to "articles" (/articles)
-  },
+    post:
+      isEnabled: true
+      permalink: '/blog/%slug%' # Variables: %slug%, %year%, %month%, %day%, %hour%, %minute%, %second%, %category%
+      robots:
+        index: true
 
-  post: {
-    disabled: false,
-    pathname: '', // empty for /some-post, value for /pathname/some-post 
-  },
+    list:
+      isEnabled: true
+      pathname: 'blog' # Blog main path, you can change this to "articles" (/articles)
+      robots:
+        index: true
 
-  category: {
-    disabled: false,
-    pathname: 'category', // set empty to change from /category/some-category to /some-category
-  },
+    category:
+      isEnabled: true
+      pathname: 'category' # Category main path /category/some-category, you can change this to "group" (/group/some-category)
+      robots:
+        index: true
 
-  tag: {
-    disabled: false,
-    pathname: 'tag', // set empty to change from /tag/some-tag to /some-tag
-  },
-};
+    tag:
+      isEnabled: true
+      pathname: 'tag' # Tag main path /tag/some-tag, you can change this to "topics" (/topics/some-category)
+      robots:
+        index: false
 
+analytics:
+  vendors:
+    googleAnalytics:
+      id: null # or "G-XXXXXXXXXX"
 
+ui:
+  theme: 'system' # Values: "system" | "light" | "dark" | "light:only" | "dark:only"
 ```
 
 <br>
@@ -198,46 +246,24 @@ Clone this repository on own GitHub account and deploy to Vercel:
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fonwidget%2Fastrowind)
 
-
-<br>
-
-## Roadmap
-
-- *Project*:
-  - **(DONE)** Reduce the complexity in the components folder and simplify the other folders to make it very easy to use.
-  - Create simple and clear strategy to get template updates
-  - Move specific configurations to a specialized file
-  - Fix some bugs with prettier
-  - Make the use of images clean and intuitive
-- *SEO*:
-  - **(DONE)** Add support to easily manage SEO meta-tags (title, description, canonical, social sharing, ...)
-- *Blog*:
-  - **(DONE)** Support to Fast and SEO friendly blog
-  - **(DONE)** Add support for categories and tags.
-  - Improve blog design
-  - Create component or utilities for latest posts
-  - Create component or utilities for related posts
-  - Add more *shortcodes* or *embed* functions to posts in Markdown: (eg video, tweet...)
-- *More widgets*:
-  - ~~Add more Tailwind components useful for most scenarios (Features, Contact, Call to Actions, Content, FAQs ...)~~
-  - Create external library or place with useful Tailwind components
-- *More Examples*: Add commonly used example pages (Ex: About, Terms, Services...)
-- *Documentation*: Create detailed documentation with best practices and redesign tips
-
 <br>
 
 ## Frequently Asked Questions
 
 - Why?
-- 
 -
-
+-
 
 <br>
 
+## Related projects
+
+- [TailNext](https://tailnext.vercel.app/) - Free template using Next.js 14 and Tailwind CSS with the new App Router.
+- [Qwind](https://qwind.pages.dev/) - Free template to make your website using Qwik + Tailwind CSS.
+
 ## Contributing
 
-If you have any idea, suggestions or find any bugs, feel free to open a discussion, an issue or create a pull request. 
+If you have any idea, suggestions or find any bugs, feel free to open a discussion, an issue or create a pull request.
 That would be very useful for all of us and we would be happy to listen and take action.
 
 ## Acknowledgements
@@ -246,4 +272,4 @@ Initially created by [onWidget](https://onwidget.com) and maintained by a commun
 
 ## License
 
-**AstroWind** is licensed under the Unlicense license — see the [LICENSE](https://github.com/onwidget/astrowind/blob/main/LICENSE.md) file for details.
+**AstroWind** is licensed under the MIT license — see the [LICENSE](./LICENSE.md) file for details.

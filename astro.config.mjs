@@ -3,54 +3,85 @@ import { fileURLToPath } from 'url';
 
 import { defineConfig } from 'astro/config';
 
-import tailwind from '@astrojs/tailwind';
 import sitemap from '@astrojs/sitemap';
-import image from '@astrojs/image';
-import mdx from "@astrojs/mdx";
+import tailwind from '@astrojs/tailwind';
+import mdx from '@astrojs/mdx';
 import partytown from '@astrojs/partytown';
+import compress from 'astro-compress';
+import icon from 'astro-icon';
+import tasks from './src/utils/tasks';
 
-import { remarkReadingTime } from './src/utils/frontmatter.js';
+import { readingTimeRemarkPlugin, responsiveTablesRehypePlugin } from './src/utils/frontmatter.mjs';
 
-import { SITE } from './src/config.mjs';
+import { ANALYTICS, SITE } from './src/utils/config.ts';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-// https://astro.build/config
+const whenExternalScripts = (items = []) =>
+  ANALYTICS.vendors.googleAnalytics.id && ANALYTICS.vendors.googleAnalytics.partytown
+    ? Array.isArray(items)
+      ? items.map((item) => item())
+      : [items()]
+    : [];
+
 export default defineConfig({
-	// Astro uses this full URL to generate your sitemap and canonical URLs in your final build
-	site: SITE.origin,
-	base: SITE.basePathname,
+  site: SITE.site,
+  base: SITE.base,
+  trailingSlash: SITE.trailingSlash ? 'always' : 'never',
 
-	output: 'static',
+  output: 'static',
 
-	integrations: [
-		tailwind({
-			config: {
-				applyBaseStyles: false,
-			},
-		}),
-		sitemap(),
-		image({
-			serviceEntryPoint: '@astrojs/image/sharp'
-		}),
-		mdx(),
+  integrations: [
+    tailwind({
+      applyBaseStyles: false,
+    }),
+    sitemap(),
+    mdx(),
+    icon({
+      include: {
+        tabler: ['*'],
+        'flat-color-icons': [
+          'template',
+          'gallery',
+          'approval',
+          'document',
+          'advertising',
+          'currency-exchange',
+          'voice-presentation',
+          'business-contact',
+          'database',
+        ],
+      },
+    }),
 
-		/* Disable this integration if you don't use Google Analytics (or other external script). */
-		partytown({
-			config: { forward: ['dataLayer.push'] },
-		}),
-	],
+    ...whenExternalScripts(() =>
+      partytown({
+        config: { forward: ['dataLayer.push'] },
+      })
+    ),
 
-	markdown: {
-    remarkPlugins: [remarkReadingTime],
-    extendDefaultPlugins: true,
+    tasks(),
+
+    compress({
+      CSS: true,
+      HTML: false,
+      Image: false,
+      JavaScript: true,
+      SVG: true,
+      Logger: 1,
+    }),
+  ],
+
+  markdown: {
+    remarkPlugins: [readingTimeRemarkPlugin],
+    rehypePlugins: [responsiveTablesRehypePlugin],
   },
 
-	vite: {
-		resolve: {
-			alias: {
-				'~': path.resolve(__dirname, './src'),
-			},
-		},
-	},
+  vite: {
+    resolve: {
+      alias: {
+        '~': path.resolve(__dirname, './src'),
+      },
+    },
+  },
 });
